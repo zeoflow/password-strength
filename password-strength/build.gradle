@@ -21,12 +21,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation androidx.appcompat
-    implementation androidx.browser
-    implementation androidx.cardview
-    implementation androidx.constraintlayout
-    implementation androidx.exifinterface
-    implementation androidx.recyclerview
-    implementation androidx.transition
 }
+
+apply from: "${rootProject.projectDir}/password-strength/maven-push.gradle"

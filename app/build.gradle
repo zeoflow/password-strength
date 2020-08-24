@@ -23,13 +23,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':password-strength')
+//    implementation zeoflow.password_strength
 
     implementation androidx.appcompat
-    implementation androidx.browser
-    implementation androidx.cardview
-    implementation androidx.constraintlayout
-    implementation androidx.exifinterface
-    implementation androidx.recyclerview
-    implementation androidx.transition
 
 }

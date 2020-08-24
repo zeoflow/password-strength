@@ -5,5 +5,4 @@ build
 release
 *.iml
 gradlew*
-material-elements/zflow_materialelements.gpg
-material-elements/package.properties
+password-strength/password_strength.gpg
