@@ -22,8 +22,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':password-strength')
-//    implementation zeoflow.password_strength
+//    implementation project(':password-strength')
+    implementation zeoflow.password_strength
 
     implementation androidx.appcompat
 
