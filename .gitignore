@@ -1,0 +1,9 @@
+.gradle
+.idea
+gradle
+build
+release
+*.iml
+gradlew*
+material-elements/zflow_materialelements.gpg
+material-elements/package.properties
