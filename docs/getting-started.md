@@ -33,8 +33,7 @@ To use it:
       }
     ```
 
-Visit [Google's Maven Repository](http://maven.google.com) or
-[MVN Repository](https://mvnrepository.com/artifact/com.zeoflow/password-strength)
+Visit [MVN Repository](https://mvnrepository.com/artifact/com.zeoflow/password-strength)
 to find the latest version of the library.
 
 ## Contributors
