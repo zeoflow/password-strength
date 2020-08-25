@@ -30,6 +30,7 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
 ext {
     compileSdkVersion = 30
     buildToolsVersion = '30.0.1'
