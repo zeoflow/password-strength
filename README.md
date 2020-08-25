@@ -54,7 +54,6 @@ public class MainActivity extends BindAppActivity<ActivityMainBinding, MainViewB
         PasswordType res = initializePassChecker()
             .calculateStrength("password");
         //..
-        //..
     }
     //..
 }
