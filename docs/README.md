@@ -1,6 +1,6 @@
 # Password Strength for Android
 
-##  Intro
+## Intro
 Password Strength is an Android Library that checks for a password
 strength.
 
