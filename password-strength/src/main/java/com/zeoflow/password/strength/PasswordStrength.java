@@ -8,13 +8,12 @@ import static com.zeoflow.password.strength.PasswordType.WEAK;
 public class PasswordStrength
 {
 
-    //--------REQUIREMENTS--------
-    static int REQUIRED_LENGTH = 8;
-    static int MAXIMUM_LENGTH = 15;
-    static boolean REQUIRE_SPECIAL_CHARACTERS = true;
-    static boolean REQUIRE_DIGITS = true;
-    static boolean REQUIRE_LOWER_CASE = true;
-    static boolean REQUIRE_UPPER_CASE = false;
+    int REQUIRED_LENGTH = 8;
+    int MAXIMUM_LENGTH = 50;
+    boolean REQUIRE_SPECIAL_CHARACTERS = true;
+    boolean REQUIRE_DIGITS = true;
+    boolean REQUIRE_LOWER_CASE = true;
+    boolean REQUIRE_UPPER_CASE = false;
 
     PasswordStrength()
     {
@@ -26,7 +25,37 @@ public class PasswordStrength
         return new PasswordStrength();
     }
 
-    public PasswordType calculateStrength(String password)
+    public PasswordStrength withRequiredLength(int requiredLength) {
+        this.REQUIRED_LENGTH = requiredLength;
+        return this;
+    }
+
+    public PasswordStrength withMaximumLength(int maximumLength) {
+        this.MAXIMUM_LENGTH = maximumLength;
+        return this;
+    }
+
+    public PasswordStrength requireSpecialCharacters(boolean requireSpecialCharacters) {
+        this.REQUIRE_SPECIAL_CHARACTERS = requireSpecialCharacters;
+        return this;
+    }
+
+    public PasswordStrength requireDigits(boolean requireDigits) {
+        this.REQUIRE_DIGITS = requireDigits;
+        return this;
+    }
+
+    public PasswordStrength requireLowerCase(boolean requireLowerCase) {
+        this.REQUIRE_LOWER_CASE = requireLowerCase;
+        return this;
+    }
+
+    public PasswordStrength requireUpperCase(boolean requireUpperCase) {
+        this.REQUIRE_UPPER_CASE = requireUpperCase;
+        return this;
+    }
+
+    public PasswordModel calculateStrength(String password)
     {
         int currentScore = 0;
         boolean sawUpper = false;
@@ -88,17 +117,17 @@ public class PasswordStrength
         switch (currentScore)
         {
             case 0:
-                return WEAK;
+                return new PasswordModel(WEAK, currentScore);
             case 1:
-                return MEDIUM;
+                return new PasswordModel(MEDIUM, currentScore);
             case 2:
-                return STRONG;
+                return new PasswordModel(STRONG, currentScore);
             case 3:
-                return VERY_STRONG;
+                return new PasswordModel(VERY_STRONG, currentScore);
             default:
         }
 
-        return VERY_STRONG;
+        return new PasswordModel(VERY_STRONG, currentScore);
     }
 
 }
