@@ -39,12 +39,4 @@ ext {
     versionCode = 1
     versionName = "1.0.0"
 
-    androidx = [
-            appcompat: 'androidx.appcompat:appcompat:1.0.0',
-    ]
-
-    zeoflow = [
-            password_strength: 'com.zeoflow:password-strength:1.0.0'
-    ]
-
 }
