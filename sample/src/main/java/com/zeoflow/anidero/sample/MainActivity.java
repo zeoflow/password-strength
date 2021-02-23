@@ -1,17 +1,19 @@
 package com.zeoflow.anidero.sample;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.zeoflow.password.strength.PasswordModel;
-import com.zeoflow.password.strength.PasswordType;
+import com.zeoflow.compat.ActivityCore;
+import com.zeoflow.password.strength.PasswordChecker;
+import com.zeoflow.password.strength.resources.Configuration;
+import com.zeoflow.password.strength.resources.ConfigurationBuilder;
+import com.zeoflow.password.strength.resources.Dictionary;
+import com.zeoflow.password.strength.resources.DictionaryBuilder;
 
-import static com.zeoflow.password.strength.PasswordStrength.initializePassChecker;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends ActivityCore
 {
 
     @Override
@@ -20,10 +22,27 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PasswordModel zPasswordStrength = initializePassChecker()
-            .requireDigits(true)
-            .requireUpperCase(true)
-            .calculateStrength("3454g36v5!?n4vt45j6");
+        // Create a map of excluded words on a per-user basis using a hypothetical "User" object that contains this info
+        List<Dictionary> dictionaryList = ConfigurationBuilder.getDefaultDictionaries(this);
+        dictionaryList.add(new DictionaryBuilder(this)
+            .setDictionaryName("exclude")
+            .setExclusion(true)
+            .addWord("Teodor", 0)
+            .addWord("Grigor", 0)
+            .addWord("grigor.teodor@gmail.com", 0)
+            .createDictionary());
+
+        // Create our configuration object and set our custom minimum
+        // entropy, and custom dictionary list
+        Configuration configuration = new ConfigurationBuilder()
+            .setMinimumEntropy(40d)
+            .setDictionaries(dictionaryList)
+            .createConfiguration(this);
+
+        // Create our PasswordChecker object with the configuration we built
+        PasswordChecker passwordChecker = new PasswordChecker(configuration);
+
+        logger(String.valueOf(passwordChecker.estimate("asdasdssd").getStrength()));
 
     }
 }
