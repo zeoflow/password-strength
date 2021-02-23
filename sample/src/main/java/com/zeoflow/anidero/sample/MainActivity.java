@@ -28,8 +28,6 @@ public class MainActivity extends ActivityCore
             .setDictionaryName("exclude")
             .setExclusion(true)
             .addWord("Teodor", 0)
-            .addWord("Grigor", 0)
-            .addWord("grigor.teodor@gmail.com", 0)
             .createDictionary());
 
         // Create our configuration object and set our custom minimum
