@@ -51,8 +51,29 @@ public class MainActivity extends BindAppActivity<ActivityMainBinding, MainViewB
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         //..
-        PasswordType res = initializePassChecker()
-            .calculateStrength("password");
+
+        // Create a map of excluded words on a per-user basis using a hypothetical "User" object that contains this info
+        List<Dictionary> dictionaryList = ConfigurationBuilder.getDefaultDictionaries(this);
+        dictionaryList.add(new DictionaryBuilder(this)
+            .setDictionaryName("exclude")
+            .setExclusion(true)
+            .addWord("word", 0)
+            .createDictionary());
+
+        // Create our configuration object and set our custom minimum
+        // entropy, and custom dictionary list
+        Configuration configuration = new ConfigurationBuilder()
+            .setMinimumEntropy(40d)
+            .setDictionaries(dictionaryList)
+            .createConfiguration(this);
+
+        // Create our PasswordChecker object with the configuration we built
+        PasswordChecker passwordChecker = new PasswordChecker(configuration);
+
+        // passwordStrength is of PasswordType type
+        // PasswordType can be (VERY_WEAK, WEAK, MEDIUM, STRONG, VERY_STRONG)
+        PasswordType passwordStrength = passwordChecker.estimate("asdasdssd").getStrength();
+
         //..
     }
     //..
